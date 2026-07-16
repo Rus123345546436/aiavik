@@ -3,62 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Analytics</title>
+    <title>Aviator Analytics Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="bg-[#050505] text-white font-sans selection:bg-blue-500">
     <div class="max-w-sm mx-auto p-6 min-h-screen flex flex-col justify-center">
         
-        <!-- Шаг 1: Главный экран -->
-        <div id="step1" class="text-center space-y-6">
-            <h1 class="text-3xl font-black">AVIATOR ENGINE</h1>
-            <p class="text-slate-400">Enter your Gaming ID to start synchronization</p>
-            <input id="userId" type="number" placeholder="Enter your ID" class="w-full bg-[#111] border border-slate-700 p-4 rounded-xl text-center focus:border-blue-500 outline-none">
-            <button id="btnStart" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold uppercase tracking-widest transition">Start Analysis</button>
-        </div>
-
-        <!-- Шаг 2: Загрузка -->
-        <div id="step2" class="hidden text-center space-y-4">
-            <div class="animate-pulse text-blue-500 text-xl font-bold">Analyzing...</div>
-            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-blue-500 animate-[loading_2s_ease-in-out_infinite]"></div>
+        <!-- Шаг 1: Приветствие -->
+        <div id="step1" class="text-center">
+            <h1 class="text-3xl font-black mb-2 text-blue-500 italic tracking-tighter">AVIATOR PRO</h1>
+            <p class="text-slate-400 mb-8 text-sm">System status: <span class="text-green-500 font-bold">ONLINE</span></p>
+            
+            <div class="glass p-8 rounded-3xl mb-6">
+                <p class="text-slate-300 mb-6">To start receiving signals, you need to synchronize a new gaming account with the predictor algorithm.</p>
+                <button id="btnSync" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                    SYNCHRONIZE ACCOUNT
+                </button>
             </div>
         </div>
 
-        <!-- Шаг 3: Ошибка (Call to Action) -->
-        <div id="step3" class="hidden bg-[#0d0d0d] border border-red-900/50 p-8 rounded-2xl text-center space-y-6">
-            <div class="text-red-500 text-5xl">⚠</div>
-            <div>
-                <h2 class="text-xl font-bold">Account Not Found</h2>
-                <p class="text-slate-400 text-sm mt-2">Your ID is not registered in our signal database. Please register with our partner to activate access.</p>
-            </div>
-            <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
-               class="block bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold">REGISTER NOW</a>
-            <p class="text-[10px] text-slate-600">Use promo code: <span class="text-white">Naushad777</span></p>
+        <!-- Шаг 2: Процесс -->
+        <div id="step2" class="hidden text-center py-10">
+            <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <p id="statusText" class="text-blue-400 font-bold tracking-widest uppercase text-xs">Initializing...</p>
         </div>
 
+        <!-- Шаг 3: Ошибка / Инструкция -->
+        <div id="step3" class="hidden text-center">
+            <div class="bg-red-900/10 border border-red-500/20 p-8 rounded-3xl">
+                <div class="text-red-500 text-5xl mb-4">✕</div>
+                <h2 class="text-xl font-bold mb-2">No Active Account Found</h2>
+                <p class="text-slate-400 text-sm mb-6">Your account is not linked to the Aviator Pro database. Please register a new account to enable real-time predictions.</p>
+                
+                <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
+                   class="block bg-white text-black font-black py-4 rounded-xl hover:bg-gray-200 transition mb-4">
+                    REGISTER & SYNC
+                </a>
+                <p class="text-[10px] text-slate-600 uppercase">Promo code: <span class="text-white">Naushad777</span></p>
+            </div>
+        </div>
     </div>
 
-    <style>
-        @keyframes loading { 0% { width: 0%; } 100% { width: 100%; } }
-    </style>
-
     <script>
-        const btnStart = document.getElementById('btnStart');
+        const btnSync = document.getElementById('btnSync');
         const step1 = document.getElementById('step1');
         const step2 = document.getElementById('step2');
         const step3 = document.getElementById('step3');
+        const statusText = document.getElementById('statusText');
 
-        btnStart.addEventListener('click', () => {
-            if(document.getElementById('userId').value.length < 3) return alert('Enter ID');
-            
+        btnSync.addEventListener('click', () => {
             step1.classList.add('hidden');
             step2.classList.remove('hidden');
 
+            const stages = ["Searching database...", "Checking credentials...", "Validating...", "Error: Account not found"];
+            let i = 0;
+            const interval = setInterval(() => {
+                if(i < stages.length) statusText.innerText = stages[i++];
+            }, 1000);
+
             setTimeout(() => {
+                clearInterval(interval);
                 step2.classList.add('hidden');
                 step3.classList.remove('hidden');
-            }, 2500);
+            }, 4200);
         });
     </script>
 </body>
