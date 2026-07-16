@@ -3,37 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Analytics | Nepal</title>
+    <title>Aviator Analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-950 text-white font-sans antialiased">
     <div class="max-w-sm mx-auto p-6 min-h-screen flex flex-col justify-center">
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold mb-2">Aviator Analytics</h1>
-            <p class="text-slate-400 text-sm">Real-time signal tracking for users</p>
-        </div>
-
-        <!-- Input Section -->
         <div id="mainForm" class="space-y-4">
+            <h1 class="text-xl font-bold text-center mb-6">Aviator Analytics</h1>
             <input id="userId" type="text" placeholder="Enter your User ID" 
-                class="w-full bg-slate-900 border border-slate-700 p-4 rounded-lg focus:outline-none focus:border-blue-500 text-center">
+                class="w-full bg-slate-900 border border-slate-700 p-4 rounded-lg focus:outline-none text-center">
             <button id="btnAction" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-lg font-bold transition">
                 Check Availability
             </button>
         </div>
 
-        <!-- Progress (Hidden) -->
         <div id="loadingBox" class="hidden text-center space-y-4">
-            <div class="text-blue-400 animate-pulse">Analyzing flight patterns...</div>
+            <div class="text-blue-400 font-medium">Syncing account data...</div>
             <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div id="bar" class="bg-blue-500 h-full w-0 transition-all duration-300"></div>
             </div>
         </div>
 
-        <!-- Result (Hidden) -->
         <div id="resultBox" class="hidden bg-slate-900 border border-slate-800 p-6 rounded-xl text-center">
             <div class="text-green-400 font-bold mb-2">Account Verified</div>
-            <p class="text-sm text-slate-300 mb-6">Your ID is eligible for signal updates. Minimum balance required to sync: <b>800 NPR</b>.</p>
+            <p class="text-sm text-slate-300 mb-6">Minimum balance required to sync: <b>800 NPR</b>.</p>
             <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
                class="block bg-green-600 hover:bg-green-500 py-3 rounded-lg font-bold">Deposit 800 NPR</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('btnAction');
+            const input = document.getElementById('userId');
+            const mainForm = document.getElementById('mainForm');
+            const loadingBox = document.getElementById('loadingBox');
+            const resultBox = document.getElementById('resultBox');
+            const bar = document.getElementById('bar');
+
+            btn.addEventListener('click', () => {
+                if (input.value.length < 3) {
+                    alert('Please enter a valid ID');
+                    return;
+                }
+
+                mainForm.classList.add('hidden');
+                loadingBox.classList.remove('hidden');
+
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 87) {
+                        clearInterval(interval);
+                        loadingBox.classList.add('hidden');
+                        resultBox.classList.remove('hidden');
+                    } else {
+                        width++;
+                        bar.style.width = width + '%';
+                    }
+                }, 40);
+            });
+        });
+    </script>
+</body>
+</html>
