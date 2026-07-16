@@ -1,32 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVIATOR PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
-        .hidden { display: none; }
-        button { width: 100%; padding: 20px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; }
-        a { display: block; width: 100%; padding: 20px; background: #2563eb; color: #fff; border-radius: 10px; text-decoration: none; font-size: 18px; font-weight: bold; }
+        .z-top { z-index: 9999 !important; position: relative; }
     </style>
 </head>
-<body>
+<body class="bg-black text-white font-sans p-4">
+    <div class="max-w-sm mx-auto min-h-screen flex flex-col justify-center">
+        
+        <!-- Шаг 1 -->
+        <div id="step1" class="text-center">
+            <h1 class="text-4xl font-black mb-6 text-blue-500 italic">AVIATOR PRO</h1>
+            
+            <div class="mb-6 space-y-3 text-sm text-slate-300 bg-white/5 p-5 rounded-2xl border border-white/10">
+                <p>Aviator Pro is an advanced AI-powered signal processing engine.</p>
+                <p>Our neural network tracks live flight patterns to predict high-multiplier exit points.</p>
+                <p>The system maintains 98% accuracy, helping users maximize their sessions.</p>
+                <p>Connect your account now to start receiving real-time signals.</p>
+            </div>
 
-    <!-- Шаг 1 -->
-    <div id="step1">
-        <h1>AVIATOR PRO</h1>
-        <p>AI Engine syncing signal patterns...</p>
-        <button onclick="nextStep()">START ENGINE</button>
+            <div class="mb-6 p-4 bg-green-900/10 border border-green-500/20 rounded-xl">
+                <p class="text-[10px] uppercase text-green-500 font-bold mb-2">Recent Successes</p>
+                <div class="flex justify-between text-xs text-slate-400 mb-1"><span>ID: 882***</span><span class="text-green-400 font-bold">+28,400 NPR</span></div>
+                <div class="flex justify-between text-xs text-slate-400"><span>ID: 914***</span><span class="text-green-400 font-bold">+31,200 NPR</span></div>
+            </div>
+
+            <button onclick="nextStep()" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg hover:bg-blue-500 transition">START ENGINE</button>
+        </div>
+
+        <!-- Шаг 2 -->
+        <div id="step2" class="hidden text-center">
+            <div class="text-blue-400 font-bold text-xl mb-4">SYNCING WITH SERVER...</div>
+            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                <div id="progress" class="bg-blue-500 h-full w-0"></div>
+            </div>
+        </div>
+
+        <!-- Шаг 3 -->
+        <div id="step3" class="hidden text-center border border-red-500/30 p-6 rounded-xl bg-red-900/10">
+            <h2 class="text-xl font-bold mb-4 text-red-500">⚠ ACCOUNT NOT FOUND</h2>
+            <p class="text-sm mb-6">Use mandatory promo code <span class="font-bold text-white text-lg block my-2 underline">Naushad777</span> during registration to activate your ID.</p>
+            
+            <!-- Прямая ссылка -->
+            <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
+               class="z-top block w-full bg-blue-600 py-4 rounded-lg font-bold text-white text-center hover:bg-blue-700">
+               REGISTER NOW
+            </a>
+        </div>
     </div>
 
-    <!-- Шаг 2 -->
-    <div id="step2" class="hidden">
-        <p>Processing database...</p>
-    </div>
-
-    <!-- Шаг 3 -->
-    <div id="step3" class="hidden">
-        <h2 style="color: red;">ACCOUNT NOT FOUND</h2>
-        <p>Use code: <b>Naushad777</b></p>
-        <!-- ТУТ ПРЯМАЯ ССЫЛКА БЕЗ JS -->
-        <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration">REGISTER NOW</a>
-    </div>
+    <script>
+        function nextStep() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            let p = document.getElementById('progress');
+            let width = 0;
+            let id = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(id);
+                    document.getElementById('step2').style.display = 'none';
+                    document.getElementById('step3').style.display = 'block';
+                } else {
+                    width += 2;
+                    p.style.width = width + '%';
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>
