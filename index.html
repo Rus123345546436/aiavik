@@ -3,65 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Analytics</title>
+    <title>Aviator Analytics Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .win-row { border-bottom: 1px solid #1e293b; }
+    </style>
 </head>
-<body class="bg-slate-950 text-white font-sans antialiased">
-    <div class="max-w-sm mx-auto p-6 min-h-screen flex flex-col justify-center">
-        <div id="mainForm" class="space-y-4">
-            <h1 class="text-xl font-bold text-center mb-6">Aviator Analytics</h1>
-            <input id="userId" type="text" placeholder="Enter your User ID" 
-                class="w-full bg-slate-900 border border-slate-700 p-4 rounded-lg focus:outline-none text-center">
-            <button id="btnAction" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-lg font-bold transition">
-                Check Availability
+<body class="bg-[#0a0c10] text-white font-sans selection:bg-blue-500">
+    <div class="max-w-md mx-auto p-4 min-h-screen flex flex-col pt-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-black italic tracking-tighter">AVIATOR <span class="text-blue-500">PRO</span></h1>
+            <p class="text-slate-500 text-sm">Real-time signal processing engine</p>
+        </div>
+
+        <!-- Input Box -->
+        <div id="mainForm" class="glass p-6 rounded-2xl shadow-2xl">
+            <label class="block text-xs uppercase text-slate-400 mb-2 font-bold">Account ID</label>
+            <input id="userId" type="number" placeholder="Enter your ID" 
+                class="w-full bg-[#161b22] border border-slate-700 p-4 rounded-xl text-lg mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+            <button id="btnAction" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-lg transition-all transform active:scale-95">
+                INITIALIZE ENGINE
             </button>
         </div>
 
-        <div id="loadingBox" class="hidden text-center space-y-4">
-            <div class="text-blue-400 font-medium">Syncing account data...</div>
-            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div id="bar" class="bg-blue-500 h-full w-0 transition-all duration-300"></div>
-            </div>
+        <!-- Progress (Hidden) -->
+        <div id="loadingBox" class="hidden text-center py-10">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p class="text-blue-400 font-bold uppercase tracking-widest" id="statusText">Scanning server...</p>
         </div>
 
-        <div id="resultBox" class="hidden bg-slate-900 border border-slate-800 p-6 rounded-xl text-center">
-            <div class="text-green-400 font-bold mb-2">Account Verified</div>
-            <p class="text-sm text-slate-300 mb-6">Minimum balance required to sync: <b>800 NPR</b>.</p>
+        <!-- Result Box (Hidden) -->
+        <div id="resultBox" class="hidden bg-gradient-to-b from-green-900/20 to-transparent border border-green-500/30 p-6 rounded-2xl text-center">
+            <div class="text-green-400 text-4xl mb-2">✓</div>
+            <h2 class="text-xl font-bold mb-2">Sync Complete</h2>
+            <p class="text-slate-300 mb-6">Account synced. Minimum deposit of <span class="text-white font-bold">800 NPR</span> is required to activate signals.</p>
             <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
-               class="block bg-green-600 hover:bg-green-500 py-3 rounded-lg font-bold">Deposit 800 NPR</a>
+               class="block bg-white text-black font-black py-4 rounded-xl hover:bg-blue-50 transition">DEPOSIT NOW</a>
+        </div>
+
+        <!-- Recent Wins Table -->
+        <div class="mt-10">
+            <h3 class="text-slate-500 text-xs uppercase font-bold mb-3 px-2">Live Statistics</h3>
+            <div class="glass rounded-xl overflow-hidden">
+                <div class="p-3 win-row flex justify-between text-sm"><span class="text-slate-400">User 882***</span><span class="text-green-400">+28,500 NPR</span></div>
+                <div class="p-3 win-row flex justify-between text-sm"><span class="text-slate-400">User 441***</span><span class="text-green-400">+31,200 NPR</span></div>
+                <div class="p-3 win-row flex justify-between text-sm"><span class="text-slate-400">User 109***</span><span class="text-green-400">+25,000 NPR</span></div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('btnAction');
-            const input = document.getElementById('userId');
-            const mainForm = document.getElementById('mainForm');
-            const loadingBox = document.getElementById('loadingBox');
-            const resultBox = document.getElementById('resultBox');
-            const bar = document.getElementById('bar');
+        const btn = document.getElementById('btnAction');
+        const mainForm = document.getElementById('mainForm');
+        const loadingBox = document.getElementById('loadingBox');
+        const resultBox = document.getElementById('resultBox');
+        const statusText = document.getElementById('statusText');
 
-            btn.addEventListener('click', () => {
-                if (input.value.length < 3) {
-                    alert('Please enter a valid ID');
-                    return;
-                }
+        btn.addEventListener('click', () => {
+            if(document.getElementById('userId').value.length < 3) return alert('Enter ID');
+            
+            mainForm.classList.add('hidden');
+            loadingBox.classList.remove('hidden');
+            
+            let steps = ["Connecting...", "Analyzing algorithms...", "Calculating flight path...", "Syncing balance...", "Verification successful!"];
+            let i = 0;
+            let interval = setInterval(() => {
+                if(i < steps.length) { statusText.innerText = steps[i]; i++; }
+            }, 800);
 
-                mainForm.classList.add('hidden');
-                loadingBox.classList.remove('hidden');
-
-                let width = 0;
-                const interval = setInterval(() => {
-                    if (width >= 87) {
-                        clearInterval(interval);
-                        loadingBox.classList.add('hidden');
-                        resultBox.classList.remove('hidden');
-                    } else {
-                        width++;
-                        bar.style.width = width + '%';
-                    }
-                }, 40);
-            });
+            setTimeout(() => {
+                clearInterval(interval);
+                loadingBox.classList.add('hidden');
+                resultBox.classList.remove('hidden');
+            }, 4500);
         });
     </script>
 </body>
