@@ -3,33 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Analytics</title>
+    <title>AVIATOR PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-    </style>
 </head>
-<body class="bg-[#050505] text-white font-sans">
-    <div class="max-w-md mx-auto p-6 min-h-screen flex flex-col justify-center">
+<body class="bg-black text-white font-sans">
+    <div class="max-w-sm mx-auto p-6 min-h-screen flex flex-col justify-center">
         
         <!-- Шаг 1 -->
         <div id="step1" class="text-center">
-            <h1 class="text-3xl font-black mb-6 tracking-tighter text-blue-500">AVIATOR ANALYTICS</h1>
-            <div class="glass p-6 rounded-3xl mb-8">
-                <p class="text-slate-300 text-sm">
-                    AI-powered engine for signal processing. Connect your account to receive real-time data and entry points.
-                </p>
-            </div>
-            <button id="btnStart" class="w-full bg-blue-600 py-4 rounded-xl font-bold text-lg hover:bg-blue-500 transition-all">
-                START SYNCHRONIZATION
+            <h1 class="text-4xl font-black mb-8 text-blue-500 italic">AVIATOR PRO</h1>
+            <button id="btnStart" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg hover:bg-blue-500 transition">
+                START ENGINE
             </button>
         </div>
 
         <!-- Шаг 2 -->
-        <div id="step2" class="hidden text-center py-10">
-            <div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-            <p id="statusText" class="text-blue-400 font-medium text-sm">Connecting to server...</p>
+        <div id="step2" class="hidden text-center">
+            <div class="animate-pulse text-blue-400 font-bold text-xl">SCANNING DATABASE...</div>
         </div>
 
         <!-- Шаг 3 -->
-        <div id="step3" class="hidden text-center
+        <div id="step3" class="hidden text-center border border-red-500/30 p-6 rounded-xl bg-red-900/10">
+            <h2 class="text-xl font-bold mb-4 text-red-500">⚠ ACCOUNT NOT FOUND</h2>
+            <p class="text-sm mb-6">Your account is not linked to Aviator Pro. Use promo code <span class="font-bold text-white">Naushad777</span> during registration to activate access.</p>
+            
+            <!-- Прямая ссылка -->
+            <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
+               class="block w-full bg-blue-600 py-4 rounded-lg font-bold text-white text-center hover:bg-blue-700 transition shadow-lg">
+                REGISTER NOW
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btnStart').onclick = function() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('step2').classList.add('hidden');
+                document.getElementById('step3').classList.remove('hidden');
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
