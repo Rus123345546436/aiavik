@@ -12,39 +12,26 @@
         <!-- Шаг 1 -->
         <div id="step1" class="text-center">
             <h1 class="text-4xl font-black mb-6 text-blue-500 italic">AVIATOR PRO</h1>
-            
             <div class="mb-8 space-y-4 text-sm text-slate-300 bg-white/5 p-5 rounded-2xl border border-white/10">
                 <p>Aviator Pro is an advanced AI-powered signal processing engine.</p>
                 <p>Our neural network tracks live flight patterns to predict high-multiplier exit points.</p>
                 <p>The system maintains 98% accuracy, helping users maximize their sessions.</p>
                 <p>Connect your account now to start receiving real-time signals.</p>
             </div>
-
-            <!-- Recent Wins Block -->
             <div class="mb-8 p-4 bg-green-900/10 border border-green-500/20 rounded-xl">
                 <p class="text-[10px] uppercase text-green-500 font-bold mb-2">Recent Successes</p>
-                <div class="flex justify-between text-xs text-slate-400">
-                    <span>User ID: 882***</span>
-                    <span class="text-green-400">+28,400 NPR</span>
-                </div>
-                <div class="flex justify-between text-xs text-slate-400 mt-1">
-                    <span>User ID: 914***</span>
-                    <span class="text-green-400">+31,200 NPR</span>
-                </div>
+                <div class="flex justify-between text-xs text-slate-400 mb-1"><span>User ID: 882***</span><span class="text-green-400">+28,400 NPR</span></div>
+                <div class="flex justify-between text-xs text-slate-400"><span>User ID: 914***</span><span class="text-green-400">+31,200 NPR</span></div>
             </div>
-
-            <button id="btnStart" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">
-                START ENGINE
-            </button>
+            <button id="btnStart" onclick="startSync()" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg">START ENGINE</button>
         </div>
 
         <!-- Шаг 2 -->
         <div id="step2" class="hidden text-center">
-            <div class="animate-pulse text-blue-400 font-bold text-xl mb-4">SYNCING WITH SERVER...</div>
+            <div class="text-blue-400 font-bold text-xl mb-4">SYNCING WITH SERVER...</div>
             <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                <div class="bg-blue-500 h-full animate-[width_3s_linear_infinite]"></div>
+                <div id="progress" class="bg-blue-500 h-full w-0"></div>
             </div>
         </div>
 
-        <!-- Шаг 3 -->
-        <div id="step3" class="hidden text-center border border-red
+        <!--
