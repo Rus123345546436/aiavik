@@ -3,75 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Analytics Pro</title>
+    <title>Aviator Analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="bg-[#050505] text-white font-sans selection:bg-blue-500">
+<body class="bg-[#050505] text-white font-sans">
     <div class="max-w-md mx-auto p-6 min-h-screen flex flex-col justify-center">
         
-        <!-- Шаг 1: Описание и Соц. доказательство -->
-        <div id="step1" class="space-y-6">
-            <div class="text-center">
-                <h1 class="text-4xl font-black italic tracking-tighter text-blue-500">AVIATOR PRO</h1>
-                <p class="text-slate-400 mt-2">AI-Powered signal intelligence</p>
-            </div>
-            
-            <div class="glass p-6 rounded-3xl text-center">
-                <p class="text-sm text-slate-300 leading-relaxed">
-                    Our AI-algorithm analyzes flight paths in real-time. Over 5,000 users are already using it to secure consistent wins.
+        <!-- Шаг 1 -->
+        <div id="step1" class="text-center">
+            <h1 class="text-3xl font-black mb-6 tracking-tighter text-blue-500">AVIATOR ANALYTICS</h1>
+            <div class="glass p-6 rounded-3xl mb-8">
+                <p class="text-slate-300 text-sm">
+                    AI-powered engine for signal processing. Connect your account to receive real-time data and entry points.
                 </p>
-                <div class="mt-6 flex justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
-                    <span>⚡ 98% ACCURACY</span>
-                    <span>● LIVE</span>
-                </div>
             </div>
-
-            <button id="btnStart" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)]">
-                START ANALYZING
+            <button id="btnStart" class="w-full bg-blue-600 py-4 rounded-xl font-bold text-lg hover:bg-blue-500 transition-all">
+                START SYNCHRONIZATION
             </button>
         </div>
 
-        <!-- Шаг 2: Процесс -->
+        <!-- Шаг 2 -->
         <div id="step2" class="hidden text-center py-10">
-            <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-            <p id="statusText" class="text-blue-400 font-bold tracking-widest uppercase text-xs">Syncing with server...</p>
+            <div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <p id="statusText" class="text-blue-400 font-medium text-sm">Connecting to server...</p>
         </div>
 
-        <!-- Шаг 3: Ошибка регистрации -->
-        <div id="step3" class="hidden text-center">
-            <div class="bg-red-900/10 border border-red-500/20 p-8 rounded-3xl">
-                <div class="text-red-500 text-5xl mb-4">⚠</div>
-                <h2 class="text-xl font-bold mb-2">No Active Account Detected</h2>
-                <p class="text-slate-400 text-sm mb-6">Your device ID is not in the system. You must register a new account with the activation promo code to link your profile to the AI.</p>
-                
-                <div class="bg-black/40 p-4 rounded-xl mb-6 border border-blue-500/30">
-                    <p class="text-[10px] text-slate-500 uppercase">Mandatory Promo Code:</p>
-                    <p class="text-2xl font-black text-blue-400 tracking-widest">Naushad777</p>
-                </div>
-
-                <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
-                   class="block bg-white text-black font-black py-4 rounded-xl hover:bg-blue-100 transition shadow-lg">
-                    REGISTER NOW
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const btnStart = document.getElementById('btnStart');
-        const step1 = document.getElementById('step1');
-        const step2 = document.getElementById('step2');
-        const step3 = document.getElementById('step3');
-        const statusText = document.getElementById('statusText');
-
-        btnStart.addEventListener('click', () => {
-            step1.classList.add('hidden');
-            step2.classList.remove('hidden');
-
-            const stages = ["Scanning network...", "Syncing AI-engine...", "Checking ID status...", "Finalizing..."];
-            let i = 0;
-            const interval = setInterval(() => {
-                if
+        <!-- Шаг 3 -->
+        <div id="step3" class="hidden text-center
