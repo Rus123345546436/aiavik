@@ -1,148 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Game Predictor</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .console-box {
-      font-family: monospace;
-      background-color: #1a1a1a;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 20px #00ff88;
-      color: #00ff88;
-      height: 250px;
-      overflow-y: auto;
-    }
-    .loading-screen {
-      font-family: monospace;
-      background: #000;
-      color: #00ff88;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      flex-direction: column;
-      z-index: 50;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
-    .hidden-screen {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator Analytics | Nepal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white font-sans">
-  <div id="loading" class="loading-screen">
-    <p>Loading... Please wait while we set up your experience.</p>
-  </div>
-
-  <div id="mainContent" class="hidden-screen">
-    <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-green-400">1xbet AI Predictor</h1>
-      <nav class="space-x-4">
-        <a href="#how" class="hover:text-green-400">How It Works</a>
-        <a href="#games" class="hover:text-green-400">Games</a>
-        <a href="#start" class="hover:text-green-400">Get Started</a>
-      </nav>
-    </header>
-
-    <section class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">Earn Real Money with AI Game Predictions</h2>
-      <p class="max-w-xl mb-8 text-gray-300">Join thousands of Nepalis using our smart AI to win in games like Aviator, Mines, and Penalty. 98% signal accuracy, real-time predictions, and fast cashouts!</p>
-      <button id="startButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition">Start Earning Now</button>
-      <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
-        <h2 class="text-xl font-bold mb-2">⚠️ Account Not Found</h2>
-             <p class="mb-4">
-          It looks like you haven't registered yet. Use the promo code "Naushad777" during registration to activate the program.
-        </p>
-        <p class="text-lg mb-4 text-yellow-400">
-          
-        </p>
-
-        <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration
-
-"
-           target="_blank"
-           class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
-          Registration
-        </a>
-      </div>
-    </section>
-
-    <section class="bg-gray-800 py-12 px-6 text-center">
-      <h3 class="text-2xl font-bold text-green-400 mb-6">
-        Today's Top Winners (NPR)
-      </h3>
-      <div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
-        <p>👤 User ID: 1218473422 – NPR 24120</p>
-        <p>👤 User ID: 9912384741 – NPR 25800</p>
-        <p>👤 User ID: 3099234822 – NPR 29400</p>
-        <p>👤 User ID: 1187339121 – NPR 24700</p>
-        <p>👤 User ID: 4412900113 – NPR 25300</p>
-        <p>👤 User ID: 8283721091 – NPR 30600</p>
-        <p>👤 User ID: 7751937742 – NPR 30000</p>
-        <p>👤 User ID: 5554921811 – NPR 29100</p>
-        <p>👤 User ID: 1983238742 – NPR 24800</p>
-        <p>👤 User ID: 3377749301 – NPR 32700</p>
-      </div>
-    </section>
-<section id="games" class="bg-gray-800 py-12 px-6 text-center">
-      <h3 class="text-2xl font-bold text-green-400 mb-6">Supported Games</h3>
-      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-          <h4 class="text-xl font-bold mb-2">🎮 Aviator</h4>
-          <p class="text-gray-300">Predict when to cash out before the plane flies away! Our AI spots lift-off trends in real time.</p>
+<body class="bg-slate-950 text-white font-sans antialiased">
+    <div class="max-w-sm mx-auto p-6 min-h-screen flex flex-col justify-center">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold mb-2">Aviator Analytics</h1>
+            <p class="text-slate-400 text-sm">Real-time signal tracking for users</p>
         </div>
-        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-          <h4 class="text-xl font-bold mb-2">💣 Mines</h4>
-          <p class="text-gray-300">Avoid the bombs, collect the wins. Our system finds low-risk paths for maximum profit.</p>
+
+        <!-- Input Section -->
+        <div id="mainForm" class="space-y-4">
+            <input id="userId" type="text" placeholder="Enter your User ID" 
+                class="w-full bg-slate-900 border border-slate-700 p-4 rounded-lg focus:outline-none focus:border-blue-500 text-center">
+            <button id="btnAction" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-lg font-bold transition">
+                Check Availability
+            </button>
         </div>
-        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-          <h4 class="text-xl font-bold mb-2">🥅 Penalty</h4>
-          <p class="text-gray-300">Know where to shoot or dive. Beat the goalkeeper with data-driven predictions.</p>
+
+        <!-- Progress (Hidden) -->
+        <div id="loadingBox" class="hidden text-center space-y-4">
+            <div class="text-blue-400 animate-pulse">Analyzing flight patterns...</div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                <div id="bar" class="bg-blue-500 h-full w-0 transition-all duration-300"></div>
+            </div>
         </div>
-        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-          <h4 class="text-xl font-bold mb-2">🐔 Chicken Road</h4>
-          <p class="text-gray-300">Know where to step next. Avoid the traps with smart AI predictions.</p>
-        </div>
-      </div>
-    </section>
 
-    <section id="how" class="bg-gray-900 py-12 px-6 text-center">
-      <h3 class="text-2xl font-bold text-green-400 mb-6">How It Works</h3>
-      <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
-        <p>📡 Our AI scans live game data and historical results 24/7.</p>
-        <p>💡 It identifies patterns that lead to consistent wins.</p>
-        <p>📲 You receive real-time predictions you can trust — straight to your device.</p>
-      </div>
-    </section>
-
-    <section class="bg-black py-12 px-6 text-center">
-      <h3 class="text-xl font-bold text-green-400 mb-4">[ Console Monitor Log ]</h3>
-      <div class="console-box max-w-3xl mx-auto text-left" id="console">
-        <p>[INFO] Predictor service active ✅</p>
-      </div>
-    </section>
-
-    <footer class="text-center text-gray-500 text-sm py-6">
-      © 2025 AI Predictor. Not affiliated with 1xbet. Use responsibly.
-    </footer>
-  </div>
-
-  <script>
-    setTimeout(() => {
-      document.getElementById("loading").classList.add("hidden-screen");
-      document.getElementById("mainContent").classList.remove("hidden-screen");
-    }, 3000);
-
-    document.getElementById("startButton").addEventListener("click", () => {
-      document.getElementById("errorBox").classList.remove("hidden");
-    });
-  </script>
-</body>
-</html>
+        <!-- Result (Hidden) -->
+        <div id="resultBox" class="hidden bg-slate-900 border border-slate-800 p-6 rounded-xl text-center">
+            <div class="text-green-400 font-bold mb-2">Account Verified</div>
+            <p class="text-sm text-slate-300 mb-6">Your ID is eligible for signal updates. Minimum balance required to sync: <b>800 NPR</b>.</p>
+            <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
+               class="block bg-green-600 hover:bg-green-500 py-3 rounded-lg font-bold">Deposit 800 NPR</a>
