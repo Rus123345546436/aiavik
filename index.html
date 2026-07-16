@@ -11,29 +11,44 @@
         
         <!-- Шаг 1 -->
         <div id="step1" class="text-center">
-            <h1 class="text-4xl font-black mb-8 text-blue-500 italic">AVIATOR PRO</h1>
-            <button id="btnStart" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg hover:bg-blue-500 transition">
+            <h1 class="text-4xl font-black mb-6 text-blue-500 italic">AVIATOR PRO</h1>
+            
+            <!-- Блок описания -->
+            <div class="mb-8 space-y-4 text-sm text-slate-300 bg-white/5 p-5 rounded-2xl border border-white/10">
+                <p>Aviator Pro — это продвинутая система анализа алгоритмов на базе искусственного интеллекта.</p>
+                <p>Наш нейронный движок в реальном времени отслеживает паттерны выплат и предсказывает наиболее вероятные точки выхода.</p>
+                <p>Система обеспечивает точность обработки данных до 98%, минимизируя риски при каждом полете.</p>
+                <p>Для начала работы необходима синхронизация вашего аккаунта с сервером предиктора.</p>
+            </div>
+
+            <button id="btnStart" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">
                 START ENGINE
             </button>
         </div>
 
         <!-- Шаг 2 -->
         <div id="step2" class="hidden text-center">
-            <div class="animate-pulse text-blue-400 font-bold text-xl">SCANNING DATABASE...</div>
+            <div class="animate-pulse text-blue-400 font-bold text-xl mb-4">SYNCING WITH SERVER...</div>
+            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                <div class="bg-blue-500 h-full animate-[width_3s_linear_infinite]"></div>
+            </div>
         </div>
 
         <!-- Шаг 3 -->
         <div id="step3" class="hidden text-center border border-red-500/30 p-6 rounded-xl bg-red-900/10">
             <h2 class="text-xl font-bold mb-4 text-red-500">⚠ ACCOUNT NOT FOUND</h2>
-            <p class="text-sm mb-6">Your account is not linked to Aviator Pro. Use promo code <span class="font-bold text-white">Naushad777</span> during registration to activate access.</p>
+            <p class="text-sm mb-6">Ваш ID не обнаружен в базе данных Aviator Pro. Используйте промокод <span class="font-bold text-white text-lg block my-2">Naushad777</span> при регистрации, чтобы активировать доступ.</p>
             
-            <!-- Прямая ссылка -->
             <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
                class="block w-full bg-blue-600 py-4 rounded-lg font-bold text-white text-center hover:bg-blue-700 transition shadow-lg">
                 REGISTER NOW
             </a>
         </div>
     </div>
+
+    <style>
+        @keyframes width { from { width: 0%; } to { width: 100%; } }
+    </style>
 
     <script>
         document.getElementById('btnStart').onclick = function() {
