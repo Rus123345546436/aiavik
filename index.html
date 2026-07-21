@@ -1,75 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVIATOR PRO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .z-top { z-index: 9999 !important; position: relative; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Game Analysis Nepal</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    .console-box {
+      font-family: monospace;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 20px #00ff88;
+      color: #00ff88;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .loading-screen {
+      font-family: monospace;
+      background: #000;
+      color: #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+    }
+
+    .hidden-screen {
+      display: none;
+    }
+  </style>
 </head>
-<body class="bg-black text-white font-sans p-4">
-    <div class="max-w-sm mx-auto min-h-screen flex flex-col justify-center">
-        
-        <!-- Шаг 1 -->
-        <div id="step1" class="text-center">
-            <h1 class="text-4xl font-black mb-6 text-blue-500 italic">AVIATOR PRO</h1>
-            
-            <div class="mb-6 space-y-3 text-sm text-slate-300 bg-white/5 p-5 rounded-2xl border border-white/10">
-                <p>Aviator Pro is an advanced AI-powered signal processing engine.</p>
-                <p>Our neural network tracks live flight patterns to predict high-multiplier exit points.</p>
-                <p>The system maintains 98% accuracy, helping users maximize their sessions.</p>
-                <p>Connect your account now to start receiving real-time signals.</p>
-            </div>
 
-            <div class="mb-6 p-4 bg-green-900/10 border border-green-500/20 rounded-xl">
-                <p class="text-[10px] uppercase text-green-500 font-bold mb-2">Recent Successes</p>
-                <div class="flex justify-between text-xs text-slate-400 mb-1"><span>ID: 882***</span><span class="text-green-400 font-bold">+28,400 NPR</span></div>
-                <div class="flex justify-between text-xs text-slate-400"><span>ID: 914***</span><span class="text-green-400 font-bold">+31,200 NPR</span></div>
-            </div>
+<body class="bg-gray-900 text-white font-sans">
 
-            <button onclick="nextStep()" class="w-full bg-blue-600 py-4 rounded-lg font-bold text-lg hover:bg-blue-500 transition">START ENGINE</button>
-        </div>
+<div id="loading" class="loading-screen">
+    <p>Loading AI system...</p>
+</div>
 
-        <!-- Шаг 2 -->
-        <div id="step2" class="hidden text-center">
-            <div class="text-blue-400 font-bold text-xl mb-4">SYNCING WITH SERVER...</div>
-            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                <div id="progress" class="bg-blue-500 h-full w-0"></div>
-            </div>
-        </div>
+<div id="mainContent" class="hidden-screen">
 
-        <!-- Шаг 3 -->
-        <div id="step3" class="hidden text-center border border-red-500/30 p-6 rounded-xl bg-red-900/10">
-            <h2 class="text-xl font-bold mb-4 text-red-500">⚠ ACCOUNT NOT FOUND</h2>
-            <p class="text-sm mb-6">Use mandatory promo code <span class="font-bold text-white text-lg block my-2 underline">Naushad777</span> during registration to activate your ID.</p>
-            
-            <!-- Прямая ссылка -->
-            <a href="https://reffpa.com/L?tag=d_3400714m_32273c_&site=3400714&ad=32273&r=registration" 
-               class="z-top block w-full bg-blue-600 py-4 rounded-lg font-bold text-white text-center hover:bg-blue-700">
-               REGISTER NOW
-            </a>
-        </div>
-    </div>
+<header class="w-full bg-gray-800 p-4 flex justify-between items-center">
 
-    <script>
-        function nextStep() {
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-            let p = document.getElementById('progress');
-            let width = 0;
-            let id = setInterval(() => {
-                if (width >= 100) {
-                    clearInterval(id);
-                    document.getElementById('step2').style.display = 'none';
-                    document.getElementById('step3').style.display = 'block';
-                } else {
-                    width += 2;
-                    p.style.width = width + '%';
-                }
-            }, 50);
-        }
-    </script>
+<h1 class="text-xl font-bold text-green-400">
+AI Game Analysis Nepal
+</h1>
+
+<nav class="space-x-4">
+<a href="#how" class="hover:text-green-400">How It Works</a>
+<a href="#games" class="hover:text-green-400">Games</a>
+<a href="#start" class="hover:text-green-400">Start</a>
+</nav>
+
+</header>
+
+<section id="start"
+class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+
+<h2 class="text-3xl md:text-5xl font-bold mb-6">
+AI Powered Game Analysis
+</h2>
+
+<p class="max-w-xl mb-8 text-gray-300">
+Join thousands of players in Nepal using AI-powered analysis for Aviator.
+Fast analysis, real-time statistics and simple interface.
+</p>
+
+<button id="startButton"
+class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition">
+Start Now
+</button>
+
+<div id="errorBox"
+class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+
+<h2 class="text-xl font-bold mb-2">
+⚠️ Account Not Found
+</h2>
+
+<p class="mb-4">
+Please register your account before using the platform.
+</p>
+
+<a href="https://refpa3665.com/L?tag=d_5724709m_59741c_&site=5724709&ad=59741&r=registration"
+target="_blank"
+class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
+
+Create Account
+
+</a>
+
+</div>
+
+</section>
+
+<section class="bg-gray-800 py-12 px-6 text-center">
+
+<h3 class="text-2xl font-bold text-green-400 mb-6">
+Today's Statistics (NPR)
+</h3>
+
+<div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
+
+<p>👤 User ID: 1718473422 — NPR 58,500</p>
+<p>👤 User ID: 1712384741 — NPR 62,300</p>
+<p>👤 User ID: 1719234822 — NPR 71,450</p>
+<p>👤 User ID: 1717339121 — NPR 64,200</p>
+<p>👤 User ID: 1712900113 — NPR 69,800</p>
+<p>👤 User ID: 1713721091 — NPR 77,000</p>
+<p>👤 User ID: 1711937742 — NPR 59,900</p>
+<p>👤 User ID: 1714921811 — NPR 81,400</p>
+<p>👤 User ID: 1713238742 — NPR 66,250</p>
+<p>👤 User ID: 1717749301 — NPR 73,600</p>
+
+</div>
+
+</section>
+<section id="games" class="bg-gray-800 py-12 px-6 text-center">
+
+<h3 class="text-2xl font-bold text-green-400 mb-6">
+Compatible Games
+</h3>
+
+<div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+<div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+
+<h4 class="text-xl font-bold mb-2">
+🎮 Aviator
+</h4>
+
+<p class="text-gray-300">
+Analyze previous rounds and receive live AI-powered statistics for Aviator.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="how" class="bg-gray-900 py-12 px-6 text-center">
+
+<h3 class="text-2xl font-bold text-green-400 mb-6">
+How It Works
+</h3>
+
+<div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+
+<p>📡 The AI continuously analyzes Aviator game data.</p>
+
+<p>💡 It detects patterns and provides real-time analysis.</p>
+
+<p>📲 Results are displayed instantly in a simple interface.</p>
+
+<p>⚡ Fast, lightweight and optimized for mobile devices.</p>
+
+</div>
+
+</section>
+
+<section class="bg-black py-12 px-6 text-center">
+
+<h3 class="text-xl font-bold text-green-400 mb-4">
+Console Log
+</h3>
+
+<div class="console-box max-w-3xl mx-auto" id="console">
+
+<p>[INFO] AI analysis engine started ✅</p>
+<p>[OK] Nepal localization loaded</p>
+<p>[OK] Currency set to NPR</p>
+<p>[OK] Aviator module initialized</p>
+<p>[INFO] Live data synchronization...</p>
+<p>[SUCCESS] Analysis completed</p>
+
+</div>
+
+</section>
+
+<footer class="text-center text-gray-500 text-sm py-6">
+
+© 2026 AI Game Analysis Nepal
+
+</footer>
+
+</div>
+
+<script>
+
+setTimeout(() => {
+
+document.getElementById("loading").classList.add("hidden-screen");
+
+document.getElementById("mainContent").classList.remove("hidden-screen");
+
+},3000);
+
+document.getElementById("startButton").addEventListener("click",()=>{
+
+document.getElementById("errorBox").classList.remove("hidden");
+
+});
+
+</script>
+
 </body>
 </html>
